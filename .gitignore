@@ -1,0 +1,26 @@
+# Maven
+target/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Application Secrets & Data
+.env
+school_events.db
+school_events.db-journal
+raw_models*.json
+models_list.json
+model_names.txt
+test_request.json
+
+# Output
+output/
+events.json
+manual_events.json
+
+# Scripts & Misc
+*.log
+start_app_*.ps1

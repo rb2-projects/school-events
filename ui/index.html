@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School Events Organizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Password Prompt Overlay -->
+        <div id="auth-overlay" class="glass-overlay">
+            <div class="auth-box glass-card">
+                <h1>Welcome Back</h1>
+                <p>Enter password to view your school schedule.</p>
+                <form id="auth-form">
+                    <input type="password" id="password-input" placeholder="Enter Password" required />
+                    <div class="auth-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember-me">
+                            <span class="checkmark"></span>
+                            Remember for a week
+                        </label>
+                    </div>
+                    <button type="submit" id="unlock-btn">Unlock Calendar</button>
+                    <p id="error-msg" class="hidden">Incorrect password.</p>
+                </form>
+                <div id="loading" class="hidden">
+                    <div class="spinner"></div> Decrypting...
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Calendar UI (Hidden until unlocked) -->
+        <main id="main-content" class="hidden">
+            <header class="glass-header">
+                <div class="container header-content">
+                    <div class="logo">🍼 School Events</div>
+                    <div class="controls">
+                        <!-- <select id="year-filter" title="Filter by Year">
+                            <option value="All">All Years</option>
+                            <option value="Reception">Reception</option>
+                            <option value="1">Year 1</option>
+                            <option value="2">Year 2</option>
+                            <option value="3">Year 3</option>
+                            <option value="4">Year 4</option>
+                            <option value="5">Year 5</option>
+                            <option value="6">Year 6</option>
+                        </select> -->
+                        <div class="toggle-container" title="Show Hidden Events">
+                            <label class="switch">
+                                <input type="checkbox" id="show-hidden-toggle">
+                                <span class="slider round"></span>
+                            </label>
+                            <span class="toggle-label">Show Hidden</span>
+                        </div>
+                        <button id="refresh-btn" title="Reload">🔄</button>
+                        <button id="logout-btn" title="Lock">🔒</button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="app-content container">
+                <!-- Top Section: Calendar + Weekly Events -->
+                <div class="top-layout">
+                    <section class="calendar-section">
+                        <div class="calendar-header">
+                            <div id="current-month-display">January 2026</div>
+                            <div class="month-nav">
+                                <button id="prev-month-btn">←</button>
+                                <button id="next-month-btn">→</button>
+                            </div>
+                        </div>
+                        <div id="calendar-grid" class="calendar-grid">
+                            <!-- Days injected here -->
+                        </div>
+                        <div class="calendar-legend">
+                            <div class="legend-item" id="filter-normal" data-category="normal"><span
+                                    class="dot normal"></span> Normal Event</div>
+                            <div class="legend-item" id="filter-recurring" data-category="recurring"><span
+                                    class="dot recurring"></span> Recurring</div>
+                            <div class="legend-item" id="filter-half-term" data-category="half-term"><span
+                                    class="dot half-term"></span> Half Term</div>
+                            <div class="legend-item" id="filter-book-bag" data-category="book-bag"><span
+                                    class="dot book-bag"></span> Book bag</div>
+                        </div>
+                    </section>
+
+                    <section class="weekly-section">
+                        <h2>Upcoming Events This Week</h2>
+                        <div id="weekly-events-list" class="weekly-list">
+                            <!-- Weekly cards injected here -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Bottom Section: Tabs for Upcoming and Previous -->
+                <section class="bottom-section">
+                    <div class="tabs">
+                        <button id="tab-upcoming" class="tab-btn active">Upcoming Events</button>
+                        <button id="tab-previous" class="tab-btn">Previous Events</button>
+                    </div>
+
+                    <div id="bulk-actions-bar" class="bulk-actions hidden">
+                        <span id="selection-count">0 items selected</span>
+                        <div class="bulk-btns">
+                            <button id="hide-selected-btn" class="bulk-btn">Hide Selected</button>
+                            <button id="unhide-selected-btn" class="bulk-btn success hidden">Unhide Selected</button>
+                            <button id="clear-selection-btn" class="bulk-btn secondary">Clear</button>
+                        </div>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="events-table-container">
+                            <table id="events-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 40px;"><input type="checkbox" id="select-all-checkbox"></th>
+                                        <th>Date</th>
+                                        <th>Event Name</th>
+                                        <th>Source</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="events-table-body">
+                                    <!-- Table rows injected here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>
