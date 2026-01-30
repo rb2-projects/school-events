@@ -24,6 +24,7 @@ test_request.json
 # Output
 output/
 events.json
+!ui/public/events.json
 manual_events.json
 
 # Scripts & Misc
